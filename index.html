@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+   <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="https://avatars.githubusercontent.com/u/180306?s=280&v=4">
+    <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/180306?s=280&v=4">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, minimum-scale=1' name='viewport' />
+    <title>AUCA - Catalog of Archival Data</title>
+    <meta name="description" content="Quickly find archive data of Soviet Kyrgyzstan. A free, open source project.">
+
+<!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://qa1231c5w9-dsn.algolia.net" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
+ <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700">
+
+<!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.1/themes/reset-min.css" integrity="sha256-JQ2nnTmybhOWSjfV3sa8mG0ZVhTCcORER4cyXc5HL10=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/unified-search.css">
+    <link href="./assets/css/main-materialize.css" rel="stylesheet">
+
+<!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="unified-search">
+
+
+    <header>
+      <!-- Navbar -->
+      <div>
+        <nav class="navbar-unified-search transparent" id="primary-navbar">
+          <div class="nav-wrapper">
+            <div class="container-custom">
+              <a href="#" data-target="mobile-nav" class="sidenav-trigger right disable-primary-color"><i class="material-icons">menu</i></a>
+              <div class="row">
+                <div class="col s8 m4 l4">
+                  <a href="https://auca.kg/" data-ga="Homepage" class="brand-logo">
+                    <div class="logo-container">
+                      <div class="logo">
+                        <img src="https://avatars.githubusercontent.com/u/180306?s=280&v=4" alt="AUCA Logo">
+                      </div>
+                      <div class="brand brand-name">
+                        AUCA
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col m4 l8">
+                  <ul class="collection right hide-on-med-and-down">
+                    <li class="collection-item avatar">
+                      <a href="index.html" title="Survey Search">
+                        <i class="material-icons circle blue-grey">search</i> <span class="title">Search administrative metadata</span>
+                        <p class="blue-grey-text text-lighten-1">Dusty Catalog</p>
+                      </a>
+                    </li>
+
+                    <li class="collection-item avatar">
+                      <a href="data.html" title="Survey Search">
+                        <i class="material-icons circle blue-grey">article</i> <span class="title">View administrative data</span>
+                        <p class="blue-grey-text text-lighten-1">Dusty Data</p>
+                      </a>
+                    </li>
+
+                    <!-- <li class="collection-item avatar">
+                      <a href="https://auca-econ.github.io/cadev/" title="Survey Search">
+                        <i class="material-icons circle blue-grey">list</i> <span class="title">Documentation</span>
+                        <p class="blue-grey-text text-lighten-1">About</p>
+                      </a>
+                    </li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- End Navbar -->
+    </header>
+
+
+
+  <main>
+
+    <!-- Image parallax -->
+    <div class="parallax-container overlay">
+        <div class="parallax">
+        <img src="./assets/img/archive.jpg" style="transform: translate3d(-50%, 284.799px, 0px); opacity: 1;">
+        </div>
+        <div class="intro valign-wrapper">
+            <div class="intro-text center-align white-text">
+                <h1 class="text-bold">Archival Documents of Kyrgyzstan</h1>
+                <h5>Discover Administrative data for Kyrgyzstan from the Emirial Russia to the Early Independent Kyrgyzstan</h5>
+                <p>Search through hundreds of administrative data</p>
+                <h6>Project made by Muktarbek kyzy Akylai and Ilias Suvanov</h6>
+            </div>
+        </div>
+    <canvas></canvas>
+  </div>
+
+
+  <!-- SearchBox -->
+    <div class="nav-search">
+    <nav class="nav-center grey lighten-3 z-depth-1">
+        <div class="nav-wrapper">
+        <div class="row">
+            <div class="col l2 hide-on-med-and-down">
+            <!-- <div id="search-toggle" class="input-field valign-wrapper">
+                <select class="browser-default grants-search white-text">
+                <optgroup class="disabled" label="Research a foundation">
+                    <option value="profiles">Tajikistan</option>
+                </optgroup>
+                <optgroup class="disabled" label="Search all grants">
+                    <option value="grants" selected>Kyrgyzstan</option>
+                </optgroup>
+                </select>
+            </div> -->
+            </div>
+            <div class="col s12 l6 offset-l1 search-box-wrapper">
+            <div id="ais-widget-search-box"></div>
+            </div>
+            <div class="col l3 hide-on-med-and-down">
+            <div id="powered-by" class="right"></div>
+            </div>
+        </div>
+        </div>
+    </nav>
+    </div>
+
+    <div class="section section-raised z-depth-4 grey lighten-3">
+        <!-- {% include search/algolia-template-rate-limit.html %}
+        {% include search/algolia-template-forbidden.html %} -->
+        <div id="algolia-hits-wrapper" class="row js-hide-advanced-tools">
+          <div class="col s12 l4">
+            <!-- Filters / Refinements header -->
+            <div class="text-muted hide-on-med-and-down">
+              Filters
+              <!-- <div class="switch switch-refinements right">
+                <label class="search-toggle-advanced">
+                  Show advanced tools
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                </label>
+              </div> -->
+            </div>
+            <div class="hidden">
+              <ul class="actions">
+                <li>
+                  <span id="ais-widget-mobile-clear-all"></span>
+                  <a href="#" data-target="refinements-slide-out" class="sidenav-trigger waves-effect waves-light button-collapse btn white grey-text text-darken-3"><i class="material-icons right">filter_list</i> Filter</a>
+                </li>
+                <li>
+
+                </li>
+              </ul>
+            </div>
+            <div class="divider hide-on-med-and-down"></div>
+            <div class="section-refinements section-refinements-grants-search hide-on-med-and-down grants-search">
+              <div> <!-- Add row class to remove added white space / padding -->
+                <div class="col s12">
+                  <div id="ais-widget-range-input"></div>
+                  <div id="ais-widget-refinement-list--Dept"></div>
+                  <div id="ais-widget-refinement-list--Fond"></div>
+                </div>
+                <div class="col s12">
+                  <div class="section">
+                    <div id="ais-widget-clear-all" class="center-align"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 l8">
+            <div class="row row-tight">
+              <div class="col s12 m9 l10">
+                  <div id="ais-widget-stats"></div>
+                </div>
+                <div class="col m3 l2 hide-on-med-and-down">
+                  <div id="ais-widget-sort-by" class="small text-muted-max right">
+                    <a href="#modal-tips" class="modal-trigger text-muted-max">Search types <i class="tiny material-icons material-icons-rounded grey lighten-2 icon-idea left">wb_incandescent</i></a>
+                  </div>
+                </div>
+            </div>
+            <div class="">
+              <div class="">
+                  <div class="divider"></div>
+              </div>
+            </div>
+            <div class="row"> <!-- Add row class to remove added white space / padding -->
+              <div class="col s12">
+                <div id="ais-widget-current-refined-values"></div>
+                <!-- Profiles ais-widget-hits goes here-->
+                <div class="card card-grants-search"> <!-- Use class card for grants results-->
+                  <div class="card-content"> <!-- Use class card-content for grants results-->
+                    <div class="row row-tight hide-on-small-only">
+                      <div class="col m6">
+                        Delo descritption
+                      </div>
+                      <div class="col m5">
+                        Delo number
+                      </div>
+                      <div class="col m1">
+                        Pages
+                      </div>
+                      <div class="col m12 divider"></div>
+                    </div>
+                    <div id="ais-widget-hits"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 l9 offset-l3">
+            <div class="section center-align">
+              <div id="ais-widget-pagination" class="grants-search"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+
+    <script  src="./script.js"></script>
+
+
+
+
+    <footer class="footer">
+      <div class="container-custom">
+        <div class="row row-footer-primary-nav">
+
+          <div class="col s4 m3 l3">
+          </div>
+
+          <div class="col s4 m3 l3">
+          </div>
+
+          <div class="col s4 m3 l3">
+            <h6>Contact Us</h6>
+            <p><a href="mailto:muktarbek_a@auca.kg" title="Project Made by">Muktarbek Akylai and Ilias Suvanov</a></p>
+          </div>
+
+
+
+          <div class="col s4 m3 l3 hide-on-small-only">
+            <h6><a class="valign-wrapper text-default" ><img src="https://avatars.githubusercontent.com/u/180306?s=280&v=4" alt="AUCA logo" class="icon-logo" width="50" height="50">Dusty Data</a></h6>
+            <p>Archival administrative data of Kyrgyzstan. Built by researchers for researchers.</p>
+          </div>
+        </div>
+
+
+        </div>
+      </div>
+      <div class="footer-terms small">
+        <div class="container-custom">
+          <div class="row">
+            <div class="col m9">
+              <ul>
+                <li class="small">
+                  All content is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>, except AUCA logo
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+</body>
